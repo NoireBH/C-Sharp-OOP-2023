@@ -17,14 +17,7 @@ namespace PersonsInfo
             reserveTeam = new List<Person>();
         }
 
-        public IReadOnlyCollection<Person> FirstTeam 
-        {
-            get { return firstTeam.AsReadOnly(); }
-        }
-        public IReadOnlyCollection<Person> ReserverTeam
-        {
-            get { return reserveTeam.AsReadOnly(); }
-        }
+        
 
         public void AddPlayer(Person person)
         {
@@ -39,10 +32,15 @@ namespace PersonsInfo
             }
         }
 
+        public string Name { get; private set; }
+        public IReadOnlyCollection<Person> FirstTeam { get { return firstTeam.AsReadOnly(); }}
+        
+        public IReadOnlyCollection<Person> ReserveTeam { get { return reserveTeam.AsReadOnly(); }}
+
         public override string ToString()
         {
-            return $"First team has {firstTeam.Count} players." + Environment.NewLine +
-               $"Reserve team has {reserveTeam.Count} players.";
+            return $"First team has {FirstTeam.Count} players." + Environment.NewLine +
+               $"Reserve team has {ReserveTeam.Count} players.";
 
         }
     }
