@@ -69,7 +69,7 @@ namespace _01._Barista_Contest
                 Console.WriteLine("Nina needs to exercise more! She didn't use all the coffee and milk!");
             }
 
-            if (coffeeQuantities.Count <= 0)
+            if (coffeeQuantities.Count == 0)
             {
                 Console.WriteLine("Coffee left: none");
             }
@@ -79,14 +79,14 @@ namespace _01._Barista_Contest
                 Console.WriteLine($"Coffee left: {String.Join(", ", coffeeQuantities)}");
             }
 
-            if (milkQuantities.Count <= 0)
+            if (milkQuantities.Count == 0)
             {
                 Console.WriteLine("Milk left: none");
             }
 
             else
             {
-                Console.WriteLine($"Milk left: {String.Join(", ", coffeeQuantities)}");
+                Console.WriteLine($"Milk left: {String.Join(", ", milkQuantities)}");
             }
 
             foreach (var drink in drinksMade.OrderBy(d => d.Value)

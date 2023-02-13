@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking", "..\..\..\..\Prog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Barista Contest", "01. Barista Contest\01. Barista Contest.csproj", "{B5037175-FEAF-439D-91C9-93B0FFDE701A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Help-A-Mole", "02. Help-A-Mole\02. Help-A-Mole.csproj", "{E5C9307E-156F-4687-9C44-9A3A8CCD52D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basketball", "..\..\..\..\Programirane\exercise\Old\C# advanced\Exams\03. Basketball_Skeleton\Basketball.csproj", "{60063BE8-978E-4687-ADB1-BFF5216AC594}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{B5037175-FEAF-439D-91C9-93B0FFDE701A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5037175-FEAF-439D-91C9-93B0FFDE701A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5037175-FEAF-439D-91C9-93B0FFDE701A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C9307E-156F-4687-9C44-9A3A8CCD52D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C9307E-156F-4687-9C44-9A3A8CCD52D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C9307E-156F-4687-9C44-9A3A8CCD52D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C9307E-156F-4687-9C44-9A3A8CCD52D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
