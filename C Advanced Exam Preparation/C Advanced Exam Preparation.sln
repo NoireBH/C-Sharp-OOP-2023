@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Help-A-Mole", "02. Help
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basketball", "..\..\..\..\Programirane\exercise\Old\C# advanced\Exams\03. Basketball_Skeleton\Basketball.csproj", "{60063BE8-978E-4687-ADB1-BFF5216AC594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Tiles Master", "01. Tiles Master\01. Tiles Master.csproj", "{4A070304-3111-45E9-AB01-805A9DF7F177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60063BE8-978E-4687-ADB1-BFF5216AC594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A070304-3111-45E9-AB01-805A9DF7F177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A070304-3111-45E9-AB01-805A9DF7F177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A070304-3111-45E9-AB01-805A9DF7F177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A070304-3111-45E9-AB01-805A9DF7F177}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
