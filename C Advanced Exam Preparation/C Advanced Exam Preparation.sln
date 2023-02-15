@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basketball", "..\..\..\..\P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Tiles Master", "01. Tiles Master\01. Tiles Master.csproj", "{4A070304-3111-45E9-AB01-805A9DF7F177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Wall Destroyer", "02. Wall Destroyer\02. Wall Destroyer.csproj", "{D8EBAF03-7187-4F0D-ADAF-D2315C2C1C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Wall Destroyer", "02. Wall Destroyer\02. Wall Destroyer.csproj", "{D8EBAF03-7187-4F0D-ADAF-D2315C2C1C2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renovators", "..\..\..\..\Programirane\exercise\Old\C# advanced\Exams\03. Renovators_Skeleton\Renovators.csproj", "{E673C8BD-EE9F-4F8C-8CC4-A7E7824B5B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{D8EBAF03-7187-4F0D-ADAF-D2315C2C1C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8EBAF03-7187-4F0D-ADAF-D2315C2C1C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8EBAF03-7187-4F0D-ADAF-D2315C2C1C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E673C8BD-EE9F-4F8C-8CC4-A7E7824B5B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E673C8BD-EE9F-4F8C-8CC4-A7E7824B5B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E673C8BD-EE9F-4F8C-8CC4-A7E7824B5B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E673C8BD-EE9F-4F8C-8CC4-A7E7824B5B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
