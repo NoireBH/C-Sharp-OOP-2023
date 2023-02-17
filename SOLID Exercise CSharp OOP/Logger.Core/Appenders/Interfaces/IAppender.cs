@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Logger.Core.Appenders.Interfaces
 {
-    internal interface IAppender
+    using Formating.Layouts.Interfaces;
+    using Models.Interfaces;
+    public interface IAppender
     {
+        ILayout layout { get; }
+
+        void AppendMessage(IMessage message);
     }
 }
