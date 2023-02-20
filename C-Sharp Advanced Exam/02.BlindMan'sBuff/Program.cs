@@ -39,6 +39,7 @@ namespace _02.BlindMan_sBuff
                             playerRow = row;
                             playerCol = col;
                             foundPlayer = true;
+                            playground[row, col] = "-";
                         }
                     }
 
