@@ -48,7 +48,7 @@ namespace _02.BlindMan_sBuff
             string direction;
             while ((direction = Console.ReadLine()) != "Finish" && touchedOpponents != 3)
             {
-                if (direction.ToLower() == "up")
+                if (direction == "up")
                 {
                     if (IsInside(playerRow - 1, playerCol, playground))
                     {
@@ -75,7 +75,7 @@ namespace _02.BlindMan_sBuff
                     }
                 }
 
-                else if (direction.ToLower() == "down")
+                else if (direction == "down")
                 {
                     if (IsInside(playerRow + 1, playerCol, playground))
                     {
@@ -101,7 +101,7 @@ namespace _02.BlindMan_sBuff
                     }
                 }
 
-                else if (direction.ToLower() == "left")
+                else if (direction == "left")
                 {
                     if (IsInside(playerRow, playerCol - 1, playground))
                     {
@@ -128,7 +128,7 @@ namespace _02.BlindMan_sBuff
                     }
                 }
 
-                else if (direction.ToLower() == "right")
+                else if (direction == "right")
                 {
                     if (IsInside(playerRow, playerCol + 1, playground))
                     {
