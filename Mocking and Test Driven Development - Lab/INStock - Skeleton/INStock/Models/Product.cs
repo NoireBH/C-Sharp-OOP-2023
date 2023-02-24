@@ -8,6 +8,13 @@ namespace INStock.Models
 {
     public class Product : IProduct
     {
+        public Product(string label, decimal price, int quantity)
+        {
+            Label = label;
+            Price = price;
+            Quantity = quantity;
+        }
+
         public string Label {get; private set;}
 
         public decimal Price { get; private set; }
@@ -16,7 +23,7 @@ namespace INStock.Models
 
         public int CompareTo([AllowNull] IProduct other)
         {
-            throw new NotImplementedException();
+           return other.CompareTo(this);
         }
     }
 }
