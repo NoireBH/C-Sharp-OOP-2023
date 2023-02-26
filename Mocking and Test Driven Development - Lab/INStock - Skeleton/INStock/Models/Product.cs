@@ -25,5 +25,10 @@ namespace INStock.Models
         {
            return other.CompareTo(this);
         }
+
+        public override string ToString()
+        {
+            return $"Product Labe: {Label}, Product Price: {Price}, Product Quantity: {Quantity}";
+        }
     }
 }

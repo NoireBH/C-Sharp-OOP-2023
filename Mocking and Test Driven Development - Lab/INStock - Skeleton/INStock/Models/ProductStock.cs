@@ -45,12 +45,17 @@ namespace INStock.Models
 
         public IProduct Find(int index)
         {
-            if (products[index] != default && index >=0 && index < products.Count)
+            if (index >=0 && index < products.Count)
             {
                 return products[index];
             }
 
-            throw new InvalidOperationException("Product with that index doesn't exist!");
+            else
+            {
+                throw new IndexOutOfRangeException("Product with that index doesn't exist!");
+            }
+
+            
         }
 
         public IEnumerable<IProduct> FindAllByPrice(decimal price)
@@ -109,5 +114,6 @@ namespace INStock.Models
         {
             throw new NotImplementedException();
         }
+        
     }
 }
