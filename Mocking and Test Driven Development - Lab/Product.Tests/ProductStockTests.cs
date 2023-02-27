@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using INStock.Contracts;
-using INStock.Models;
 using System.Linq;
 
 namespace ProductStock.Tests
@@ -31,14 +27,14 @@ namespace ProductStock.Tests
         [Test]
         public void CountShouldReturnCorrectCountOfProducts()
         {
-            Assert.AreEqual(1, defaultProductStock.Count);
+            Assert.AreEqual(3, defaultProductStock.Count);
         }
 
         [Test]
         public void AddShouldIncreaseTheCount()
         {
             defaultProductStock.Add(new INStock.Models.Product("Bread", 2, 3));
-            Assert.AreEqual(2, defaultProductStock.Count);
+            Assert.AreEqual(4, defaultProductStock.Count);
         }
 
         [Test]
@@ -52,7 +48,7 @@ namespace ProductStock.Tests
             });
         }
 
-        [Test] 
+        [Test]
         public void ContainsReturnsTrueIfProductIsInStock()
         {
             var productToReturn = defaultProductStock.First(p => p.Label == "Pill");
@@ -76,17 +72,17 @@ namespace ProductStock.Tests
         [Test]
         public void FindThowsExceptionIfIndexIsOutOfRange()
         {
-            Assert.Throws<IndexOutOfRangeException>(() => defaultProductStock.Find(2));
+            Assert.Throws<IndexOutOfRangeException>(() => defaultProductStock.Find(8));
         }
 
         [Test]
         public void FindAllByPriceReturnsAListCorrectly()
-        {   
+        {
             var testProductStock = new INStock.Models.ProductStock();
             var testProduct1 = new INStock.Models.Product("Pill", 5, 10);
-           var testProduct2 = new INStock.Models.Product("Bread", 7, 10);
-           var testProduct3 = new INStock.Models.Product("Milk", 3, 8);
-           var testProduct4 = new INStock.Models.Product("Water", 3, 8);
+            var testProduct2 = new INStock.Models.Product("Bread", 7, 10);
+            var testProduct3 = new INStock.Models.Product("Milk", 3, 8);
+            var testProduct4 = new INStock.Models.Product("Water", 3, 8);
             testProductStock.Add(testProduct1);
             testProductStock.Add(testProduct2);
             testProductStock.Add(testProduct3);
@@ -127,8 +123,8 @@ namespace ProductStock.Tests
             testProductStock.Add(testProduct2);
             testProductStock.Add(testProduct3);
             testProductStock.Add(testProduct4);
-            var expected = testProductStock.FindAllInPriceRange(4,7).ToList();
-            var actual = defaultProductStock.FindAllInPriceRange(4,7).ToList();
+            var expected = testProductStock.FindAllInPriceRange(4, 7).ToList();
+            var actual = defaultProductStock.FindAllInPriceRange(4, 7).ToList();
             bool isTrue = false;
             if (expected.All(p => p.Price >= 4 && p.Price <= 7) && actual.All(p => p.Price >= 4 && p.Price <= 7))
             {
@@ -138,5 +134,47 @@ namespace ProductStock.Tests
             Assert.IsTrue(isTrue);
 
         }
+
+        [Test]
+        public void FindByLabelReturnsCorrectProduct()
+        {
+            string expected = "Milk";
+            string actual = defaultProductStock.FindByLabel("Milk").Label;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FindByMostExpensiveProductShouldWorkCorrectly()
+        {
+            var expected = defaultProductStock.FindByLabel("Pill");
+            var actual = defaultProductStock.FindMostExpensiveProduct();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void RemoveMethodShouldRemoveProductFromTheStockAndReturnTrue()
+        {
+            Assert.IsTrue(defaultProductStock.Remove(defaultProduct));
+
+        }
+
+        [Test]
+        public void RemoveMethodShouldReturnFalseIfProductDoesNotExist()
+        {
+            var fakeProduct = new INStock.Models.Product("Fanta", 2, 6);
+            Assert.IsFalse(defaultProductStock.Remove(fakeProduct));
+
+        }
+
+        [Test]
+        public void RemoveMethodShouldDecreaseTheCount()
+        {
+            var expectedCount = defaultProductStock.Count - 1;
+            defaultProductStock.Remove(defaultProduct);
+            Assert.AreEqual(expectedCount, defaultProductStock.Count);
+
+        }
+
+        
     }
 }

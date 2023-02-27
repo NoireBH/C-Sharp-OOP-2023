@@ -90,7 +90,18 @@ namespace INStock.Models
 
         public IProduct FindMostExpensiveProduct()
         {
-            IProduct mostExpensiveProduct = (IProduct)products.MaxBy(p => p.Price);
+            decimal highestPrice = 0;
+            IProduct mostExpensiveProduct = default;
+
+            foreach (var product in products)
+            {
+                if (product.Price > highestPrice)
+                {
+                    highestPrice = product.Price;
+                    mostExpensiveProduct = product;
+                }
+            }
+
             return mostExpensiveProduct;
         }
 
