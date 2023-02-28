@@ -1,12 +1,19 @@
-﻿using Fake_Axe_and_Dummy.Contracts;
+﻿using HeroVsDummy.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fake_Axe_and_Dummy.Models
+namespace HeroVsDummy.Models
 {
     public class Hero : IHero
     { private List<IWeapon> weapons;
+
+        public Hero(string name)
+        {
+            weapons = new List<IWeapon>();
+            Name = name;
+        }
+
         public IReadOnlyList<IWeapon> Weapons {get; private set;}
 
         public string Name {get; private set;}

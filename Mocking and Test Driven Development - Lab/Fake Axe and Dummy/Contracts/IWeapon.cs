@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fake_Axe_and_Dummy.Contracts
+namespace HeroVsDummy.Contracts
 {
     public interface IWeapon
     {   
