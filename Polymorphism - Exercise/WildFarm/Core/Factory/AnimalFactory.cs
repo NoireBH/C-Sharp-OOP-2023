@@ -17,7 +17,7 @@ namespace WildFarm.Core.Factory
             string fourthInput = inputInfo[3];
 
             IAnimal animal = null;
-
+            
             if (type == "Owl")
             {
                 animal = new Owl(name, weight, double.Parse(fourthInput));
