@@ -7,11 +7,24 @@ namespace FakeAxeAndDummy.Models
 {
     public class Hero : IHero
     {
+        public Hero(IWeapon weapon)
+        {
+            Weapon = weapon;
+            Xp = 0;
+        }
+
         public IWeapon Weapon {get; private set;}
+
+        public int Xp {get; private set;}
 
         public void SwingAxe(Itarget target)
         {
-            target.Hp -= this.Weapon.Damage
+            target.takeDamage(this.Weapon.Damage);
+
+            if (target.isDead())
+            {
+                Xp += target.GiveXP();
+            }
         }
     }
 }

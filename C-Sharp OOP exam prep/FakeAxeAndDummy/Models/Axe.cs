@@ -9,6 +9,5 @@ namespace FakeAxeAndDummy.Models
     {
         public int Damage {get; private set;}
 
-
     }
 }
