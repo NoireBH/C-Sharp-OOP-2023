@@ -17,8 +17,6 @@ namespace FakeAxeAndDummy.Models
 
         public int XpDrop {get; private set; }
 
-        bool Itarget.IsDead => throw new NotImplementedException();
-
 
         public void takeDamage(int damage)
         {
@@ -26,13 +24,14 @@ namespace FakeAxeAndDummy.Models
 
             if (isDead())
             {
-
+                GiveXP();
+                throw new ArgumentException("Target is dead");
             }
         }
 
         public bool isDead()
         {
-            return this.Hp <= 0;
+            return this.Hp >= 0;
         }
 
         public int GiveXP()

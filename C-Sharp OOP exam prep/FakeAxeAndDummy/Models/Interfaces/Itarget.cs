@@ -9,8 +9,6 @@ namespace FakeAxeAndDummy.Models.Interfaces
         int Hp { get; }
         int XpDrop { get; }
 
-        bool IsDead { get; }
-
         void takeDamage(int damage);
         bool isDead();
         int GiveXP();
