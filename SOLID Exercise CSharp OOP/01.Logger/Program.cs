@@ -1,18 +1,24 @@
 ﻿using _01.Logger.Appenders.Models;
 using _01.Logger.Appenders.Models.Interfaces;
+using _01.Logger.Enums;
 using _01.Logger.Models;
 using _01.Logger.Models.Interfaces;
 using _01.Logger.Models.Layouts;
 
-var simpleLayout = new XmlLayout();
+var simpleLayout = new SimpleLayout();
 var logfile = new LogFile();
 var consoleAppender = new ConsoleAppender(simpleLayout,logfile);
+var fileappender = new FileAppender(simpleLayout, logfile);
+consoleAppender.ReportLevel = ReportLevel.Error;
+fileappender.ReportLevel = ReportLevel.Error;
 
-var file = new LogFile();
-var fileAppender = new FileAppender(simpleLayout, file);
+var logger = new Logger(consoleAppender,fileappender);
 
-var logger = new Logger(consoleAppender, fileAppender);
-logger.Error("Error parsing JSON.");
-logger.Info("User Pesho successfully registered.");
+logger.Info("Everything seems fine");
+logger.Warning("Warning: ping is too high - disconnect imminent");
+logger.Error("Error parsing request");
+logger.Critical("No connection string found in App.config");
+logger.Fatal("mscorlib.dll does not respond");
+
 
 

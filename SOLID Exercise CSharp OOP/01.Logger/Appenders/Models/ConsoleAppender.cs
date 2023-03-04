@@ -20,6 +20,8 @@ namespace _01.Logger.Appenders.Models
 
         public ILayout Layout { get;}
 
+        public ReportLevel ReportLevel { get; set; }
+
         public void Append(DateTime datetime, ReportLevel ReportLevel, string message)
         {
             string output = string.Format(Layout.Format, datetime, ReportLevel, message);

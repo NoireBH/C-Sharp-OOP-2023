@@ -22,44 +22,39 @@ namespace _01.Logger.Models
 
         public void Critical(string message)
         {
-            foreach (var appender in Appenders)
-            {
-                appender.Append(DateTime.Now, ReportLevel.Critical, message);
-            }
+            Log(ReportLevel.Critical, message);
         }
 
 
         public void Error(string message)
         {
-            foreach (var appender in Appenders)
-            {
-                appender.Append(DateTime.Now, ReportLevel.Error, message);
-            }
+            Log(ReportLevel.Error, message);
         }
 
         public void Fatal(string message)
         {
-            foreach (var appender in Appenders)
-            {
-                appender.Append(DateTime.Now, ReportLevel.Fatal, message);
-            }
+            Log(ReportLevel.Fatal, message);
         }
 
         public void Info(string message)
         {
-            foreach (var appender in Appenders)
-            {
-                appender.Append(DateTime.Now, ReportLevel.Info, message);
-            }
+            Log(ReportLevel.Info, message);
         }
 
         public void Warning(string message)
         {
-            foreach (var appender in Appenders)
-            {
-                appender.Append(DateTime.Now, ReportLevel.Warning, message);
-            }
+            Log(ReportLevel.Warning, message);
         }
 
+        private void Log(ReportLevel level, string message)
+        {
+            foreach (var appender in Appenders)
+            {
+                if (level >= appender.ReportLevel)
+                {
+                    appender.Append(DateTime.Now, level, message);
+                }
+            }
+        }
     }
 }

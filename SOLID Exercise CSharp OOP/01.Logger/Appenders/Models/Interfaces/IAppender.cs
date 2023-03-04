@@ -11,6 +11,7 @@ namespace _01.Logger.Appenders.Models.Interfaces
     public interface IAppender
     {   
         ILayout Layout { get; }
+        ReportLevel ReportLevel { get; }
         void Append(DateTime datetime, ReportLevel ReportLevel, string message); 
     }
 }
