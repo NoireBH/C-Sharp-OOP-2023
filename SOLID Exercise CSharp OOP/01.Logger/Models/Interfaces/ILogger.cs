@@ -10,7 +10,7 @@ namespace _01.Logger.Models.Interfaces
 {
     public interface ILogger
     {      
-        public IAppender Appender { get; }
+        public IAppender[] Appenders { get; }
         public ReportLevel ReportLevel { get; }
         void Info(string message);
         void Warning(string message);

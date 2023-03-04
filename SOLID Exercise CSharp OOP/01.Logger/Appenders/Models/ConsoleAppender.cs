@@ -11,9 +11,11 @@ namespace _01.Logger.Appenders.Models
 {
     public class ConsoleAppender : IAppender
     {
-        public ConsoleAppender(ILayout layout)
+        private readonly ILogFile logFile;
+        public ConsoleAppender(ILayout layout, ILogFile logFile)
         {
             Layout = layout;
+            this.logFile = logFile;
         }
 
         public ILayout Layout { get;}
@@ -21,6 +23,7 @@ namespace _01.Logger.Appenders.Models
         public void Append(DateTime datetime, ReportLevel ReportLevel, string message)
         {
             string output = string.Format(Layout.Format, datetime, ReportLevel, message);
+            logFile.Write(output);
             Console.WriteLine(output);
         }
 

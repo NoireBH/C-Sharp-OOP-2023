@@ -11,39 +11,54 @@ namespace _01.Logger.Models
 {
     public class Logger : ILogger
     {
-        public Logger(IAppender appender)
+        public Logger(params IAppender[] appenders)
         {
-            Appender = appender;
+            Appenders = appenders;
         }
 
-        public IAppender Appender { get;}
+        public IAppender[] Appenders { get; }
 
         public ReportLevel ReportLevel { get; }
 
         public void Critical(string message)
         {
-            Appender.Append(DateTime.Now, ReportLevel.Critical, message);
+            foreach (var appender in Appenders)
+            {
+                appender.Append(DateTime.Now, ReportLevel.Critical, message);
+            }
         }
 
 
         public void Error(string message)
         {
-            Appender.Append(DateTime.Now, ReportLevel.Error, message);
+            foreach (var appender in Appenders)
+            {
+                appender.Append(DateTime.Now, ReportLevel.Error, message);
+            }
         }
 
         public void Fatal(string message)
         {
-            Appender.Append(DateTime.Now, ReportLevel.Fatal, message);
+            foreach (var appender in Appenders)
+            {
+                appender.Append(DateTime.Now, ReportLevel.Fatal, message);
+            }
         }
 
         public void Info(string message)
         {
-            Appender.Append(DateTime.Now, ReportLevel.Info, message);
+            foreach (var appender in Appenders)
+            {
+                appender.Append(DateTime.Now, ReportLevel.Info, message);
+            }
         }
 
         public void Warning(string message)
         {
-            Appender.Append(DateTime.Now, ReportLevel.Warning, message);
+            foreach (var appender in Appenders)
+            {
+                appender.Append(DateTime.Now, ReportLevel.Warning, message);
+            }
         }
 
     }

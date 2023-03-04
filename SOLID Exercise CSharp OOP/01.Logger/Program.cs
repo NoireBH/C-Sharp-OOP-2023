@@ -2,11 +2,17 @@
 using _01.Logger.Appenders.Models.Interfaces;
 using _01.Logger.Models;
 using _01.Logger.Models.Interfaces;
+using _01.Logger.Models.Layouts;
 
-ILayout simpleLayout = new SimpleLayout();
-IAppender consoleAppender =
-new ConsoleAppender(simpleLayout);
-ILogger logger = new Logger(consoleAppender);
+var simpleLayout = new XmlLayout();
+var logfile = new LogFile();
+var consoleAppender = new ConsoleAppender(simpleLayout,logfile);
+
+var file = new LogFile();
+var fileAppender = new FileAppender(simpleLayout, file);
+
+var logger = new Logger(consoleAppender, fileAppender);
 logger.Error("Error parsing JSON.");
 logger.Info("User Pesho successfully registered.");
+
 

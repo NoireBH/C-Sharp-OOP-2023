@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace _01.Logger.Models.Interfaces
 {
     public interface ILogFile
-    {
-        void Write();
+    {   
+        int Size { get; }
+        void Write(string message);
     }
 }

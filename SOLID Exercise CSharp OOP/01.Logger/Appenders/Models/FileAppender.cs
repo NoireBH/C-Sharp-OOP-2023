@@ -10,17 +10,21 @@ using System.Threading.Tasks;
 namespace _01.Logger.Appenders.Models
 {
     public class FileAppender : IAppender
-    {
-        public FileAppender(ILayout layout)
+    {   
+        private readonly ILogFile logFile;
+        public FileAppender(ILayout layout, ILogFile logFile)
         {
-            Layout = layout;
+            Layout = layout;  
+            this.logFile = logFile;
         }
 
         public ILayout Layout {get;}
 
         public void Append(DateTime datetime, ReportLevel ReportLevel, string message)
         {
-            string output = string.Format(Layout.Format, datetime, ReportLevel, message);            
+            string output = string.Format(Layout.Format, datetime, ReportLevel, message);
+            logFile.Write(output);
+            File.AppendAllText("../../../log.txt", output + Environment.NewLine);
         }
     }
 }

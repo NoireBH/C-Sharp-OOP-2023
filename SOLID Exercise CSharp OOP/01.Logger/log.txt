@@ -1,0 +1,14 @@
+04/03/2023 14:42:24 - Error - Error parsing JSON.
+04/03/2023 14:42:24 - Info - User Pesho successfully registered.
+04/03/2023 14:44:21 - Error - Error parsing JSON.
+04/03/2023 14:44:21 - Info - User Pesho successfully registered.
+<log>
+   <date>04/03/2023 14:52:12</date>
+   <level>Error</level>
+<message>Error parsing JSON.</message>
+</log>
+<log>
+   <date>04/03/2023 14:52:12</date>
+   <level>Info</level>
+<message>User Pesho successfully registered.</message>
+</log>
