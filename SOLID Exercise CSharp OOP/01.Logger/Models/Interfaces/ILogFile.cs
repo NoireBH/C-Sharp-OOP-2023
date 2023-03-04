@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace _01.Logger.Models.Interfaces
 {
-    public interface ISimpleLayout
+    public interface ILogFile
     {
-        public DateTime DateTime { get; }
-        public Enum ReportLevel { get; }
-        public string Message { get; }
+        void Write();
     }
 }
