@@ -12,30 +12,81 @@
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            var current = _head;
+            while (current != null)
+            {
+                if (current.Element.Equals(item))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public T Dequeue()
         {
-            throw new NotImplementedException();
+            CheckIfQueueIsEmpty();
+            var elementToDequeue = _head.Element;
+            _head = _head.Next;
+            Count--;
+
+            return elementToDequeue;
         }
 
         public void Enqueue(T item)
         {
-            throw new NotImplementedException();
+            Node<T> newNode = new Node<T>(item);
+
+            if (_head == null)
+            {
+                _head = newNode;               
+            }
+
+            else
+            {
+                var currentNode = _head;
+
+                while (currentNode.Next != null)
+                {
+                    currentNode = currentNode.Next;                  
+                }
+
+                currentNode.Next = newNode;
+            }
+
+            Count++;
         }
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            CheckIfQueueIsEmpty();
+            var elementToReturn = _head.Element;
+
+            return elementToReturn;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var current = _head;
+
+            while (current != null)
+            {
+                yield return current.Element;
+                current = current.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
-            => throw new NotImplementedException();
+            => GetEnumerator();
+
+        private void CheckIfQueueIsEmpty()
+        {
+            if (_head == null)
+            {
+                throw new InvalidOperationException();
+            }
+        }
     }
 }
