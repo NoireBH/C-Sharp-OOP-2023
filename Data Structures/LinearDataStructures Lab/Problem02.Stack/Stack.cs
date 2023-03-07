@@ -12,30 +12,66 @@
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            var current = _top;
+            while (current != null)
+            {
+                if (current.Element.Equals(item))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public T Peek()
-        {
-            throw new NotImplementedException();
+        {   
+            CheckIfStackIsEmpty();
+            return _top.Element;
         }
 
         public T Pop()
         {
-            throw new NotImplementedException();
+            CheckIfStackIsEmpty();
+            var previousTopNode = _top.Element;
+            var newTop = _top.Next;
+            _top.Next = null;
+            _top = newTop;
+            Count--;
+
+            return previousTopNode;
         }
 
         public void Push(T item)
         {
-            throw new NotImplementedException();
+            Node<T> newNode = new Node<T>(item);
+            newNode.Next = _top;
+            _top = newNode;
+            Count++;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var current = _top;
+
+            while (current != null)
+            {
+                yield return current.Element;
+                current = current.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator() 
-            => throw new NotImplementedException();
+            => GetEnumerator();
+
+        private void CheckIfStackIsEmpty()
+        {
+            if (_top == null)
+            {
+                throw new InvalidOperationException();
+            }
+        }
+            
     }
 }
