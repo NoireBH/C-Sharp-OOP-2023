@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ReversedList<T> : IAbstractList<T>
     {
@@ -25,11 +26,13 @@
         {
             get
             {
-                throw new NotImplementedException();
+                ValidateIndex(index);
+                return _items[Count - index - 1];
             }
             set
             {
-                throw new NotImplementedException();
+                ValidateIndex(index);
+                _items[index] = value;
             }
         }
 
@@ -37,42 +40,117 @@
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            GrowIfNecessary();
+            _items[Count++] = item;
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            if (_items.Contains(item))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            if (_items.Contains(item))
+            {
+                int index = 0;
+
+                for (int i = Count - 1; i >= 0; i--)
+                {
+                    if (item.Equals(_items[i]))
+                    {
+                        index = Count - i - 1;
+                        return index;
+                    }
+                }
+                                   
+            }
+
+            return -1;
         }
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            ValidateIndex(index);
+            GrowIfNecessary();
+
+            for (int i = Count; i >= Count - index; i--)
+            {
+                _items[i] = _items[i - 1];
+            }
+
+            _items[Count - index] = item;
+            Count++;
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (_items.Contains(item))
+            {
+                int index = IndexOf(item);
+                RemoveAt(index);
+                return true;
+            }
+
+            return false;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            ValidateIndex(index);
+
+            for (int i = Count; i >= Count - index; i--)
+            {
+                _items[i] = _items[i - 1];
+            }
+
+            _items[Count - index] = default;
+            Count--;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = Count - 1; i >= 0; i--)
+            {
+                yield return _items[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
+        }
+        private void ValidateIndex(int index)
+        {
+            if (index < 0 || index >= Count)
+            {
+                throw new IndexOutOfRangeException(nameof(index));
+            }
+        }
+
+        private void GrowIfNecessary()
+        {
+            if (Count == _items.Length)
+            {
+                _items = Grow();
+            }
+        }
+
+        private T[] Grow()
+        {
+            var copy = new T[_items.Length * 2];
+
+            for (int i = 0; i < _items.Length; i++)
+            {
+                copy[i] = _items[i];
+            }
+
+            return copy;
         }
     }
 }
