@@ -46,12 +46,7 @@
                         isBalanced = false;
                         break;
                     }
-
-
-
                 }
-
-
             }
 
             if (isBalanced)
