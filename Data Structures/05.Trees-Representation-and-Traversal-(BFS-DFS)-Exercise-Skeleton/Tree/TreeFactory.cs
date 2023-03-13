@@ -34,7 +34,7 @@
                 AddEdge(nodeAndParent[0], nodeAndParent[1]);
             }
 
-            return null;
+            return GetRoot();
         }
 
         public Tree<int> CreateNodeByKey(int key)
@@ -50,7 +50,14 @@
 
         private Tree<int> GetRoot()
         {
-            throw new NotImplementedException();
+            var node = nodesBykeys.FirstOrDefault().Value;
+
+            while (node.Parent != null)
+            {
+                node = node.Parent;
+            }
+
+            return node;
         }
     }
 }

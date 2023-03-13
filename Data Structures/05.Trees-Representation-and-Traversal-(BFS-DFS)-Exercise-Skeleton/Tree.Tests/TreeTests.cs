@@ -12,6 +12,7 @@ namespace Tree.Tests
 
 
         [SetUp]
+        [Test]
         public void InitializeFactoryAndTree()
         {
             string[] input = new string[]
