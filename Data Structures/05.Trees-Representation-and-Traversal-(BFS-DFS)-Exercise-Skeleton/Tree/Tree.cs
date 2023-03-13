@@ -60,7 +60,43 @@
 
         public Tree<T> GetDeepestLeftomostNode()
         {
-            throw new NotImplementedException();
+            Tree<T> deepestNode = null;
+            int deepestLevel = 0;
+
+            var nodes = new Queue<Tree<T>>();
+            nodes.Enqueue(this);
+
+            while (nodes.Count > 0)
+            {
+                var currentNode = nodes.Dequeue();
+                var currentDepth = GetCurrentDepth(currentNode);
+                if (currentNode._children.Count == 0 && currentDepth > deepestLevel)
+                {
+                    deepestLevel = currentDepth;
+                    deepestNode = currentNode;
+                }
+
+                foreach (var child in currentNode._children)
+                {
+                    nodes.Enqueue(child);
+                }
+            }
+
+            return deepestNode;
+        }
+
+        private int GetCurrentDepth(Tree<T> currentNode)
+        {
+            int depth = 0;
+            var current = currentNode;
+                
+            while (current.Parent != null)
+            {
+                depth++;
+                current = current.Parent;
+            }
+
+            return depth;
         }
 
         public List<T> GetLeafKeys()
