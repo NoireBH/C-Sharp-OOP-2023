@@ -41,8 +41,8 @@
 
         public string GetAsString()
         {
-           return GetAsString(0).Trim();
-            
+            return GetAsString(0).Trim();
+
         }
 
         private string GetAsString(int spaces)
@@ -60,7 +60,7 @@
 
         public Tree<T> GetDeepestLeftomostNode()
         {
-            Tree<T> deepestNode = null;
+              Tree<T> deepestNode = null;
             int deepestLevel = 0;
 
             var nodes = new Queue<Tree<T>>();
@@ -89,7 +89,7 @@
         {
             int depth = 0;
             var current = currentNode;
-                
+
             while (current.Parent != null)
             {
                 depth++;
@@ -119,7 +119,7 @@
                     nodes.Enqueue(child);
                 }
             }
-           
+
 
             return leafs = leafs.OrderBy(leaf => leaf).ToList();
         }
@@ -151,12 +151,72 @@
 
         public List<T> GetLongestPath()
         {
-            throw new NotImplementedException();
+            var deepestNode = GetDeepestLeftomostNode();
+            var longestPath = new List<T>();
+
+            while (deepestNode.Parent != null)
+            {
+                longestPath.Add(deepestNode.Key);
+                deepestNode = deepestNode.Parent;
+            }
+
+            longestPath.Add(deepestNode.Key);
+
+            longestPath.Reverse();
+            return longestPath;
         }
 
         public List<List<T>> PathsWithGivenSum(int sum)
         {
-            throw new NotImplementedException();
+            var leafNodes = GetLeafNodes();
+            var pathsWithSum = new List<List<T>>();
+
+            foreach (var leaf in leafNodes)
+            {
+                var node = leaf;
+                int currentSum = 0;
+                var currentPath = new List<T>();
+
+                while (node != null)
+                {
+                    currentPath.Add(node.Key);
+                    currentSum += Convert.ToInt32(node.Key);
+                    node = node.Parent;
+                }
+
+                if (currentSum == sum)
+                {
+                    currentPath.Reverse();
+                    pathsWithSum.Add(currentPath);
+                }
+            }
+
+            return pathsWithSum;
+        }
+
+        private List<Tree<T>> GetLeafNodes()
+        {
+            var leafs = new List<Tree<T>>();
+            var nodes = new Queue<Tree<T>>();
+            nodes.Enqueue(this);
+
+            while (nodes.Count > 0)
+            {
+                var currentNode = nodes.Dequeue();
+
+                if (currentNode._children.Count == 0)
+                {
+                    leafs.Add(currentNode);
+                }
+
+                foreach (var child in currentNode._children)
+                {
+                    nodes.Enqueue(child);
+                }
+            }
+
+
+            return leafs;
         }
 
         public List<Tree<T>> SubTreesWithGivenSum(int sum)
