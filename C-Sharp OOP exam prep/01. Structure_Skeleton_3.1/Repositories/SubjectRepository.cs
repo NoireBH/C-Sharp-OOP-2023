@@ -1,27 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using UniversityCompetition.Models.Contracts;
 using UniversityCompetition.Repositories.Contracts;
 
 namespace UniversityCompetition.Repositories
 {
-    public class SubjectRepository<T> : IRepository<T>
+    public class SubjectRepository<T> : IRepository<ISubject>
     {
-        public IReadOnlyCollection<T> Models => throw new NotImplementedException();
+        private List<ISubject> models;
+        public IReadOnlyCollection<ISubject> Models => models;
 
-        public void AddModel(T model)
+        public void AddModel(ISubject model)
         {
-            throw new NotImplementedException();
+            models.Add(model);
         }
 
-        public T FindById(int id)
+        public ISubject FindById(int id)
         {
-            throw new NotImplementedException();
+            ISubject subject = models.FirstOrDefault(x => x.Id == id);
+
+            return subject;
         }
 
-        public T FindByName(string name)
+        public ISubject FindByName(string name)
         {
-            throw new NotImplementedException();
+            ISubject subject = models.FirstOrDefault(x => x.Name == name);
+
+            return subject;
         }
     }
 }

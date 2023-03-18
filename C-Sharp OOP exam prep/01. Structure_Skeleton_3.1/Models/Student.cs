@@ -2,29 +2,78 @@
 using System.Collections.Generic;
 using System.Text;
 using UniversityCompetition.Models.Contracts;
+using UniversityCompetition.Utilities.Messages;
 
 namespace UniversityCompetition.Models
 {
-    public class Student : IStudent
-    {
-        public int Id => throw new NotImplementedException();
+    public  class Student : IStudent
+    {   
+        private string firstName;
+        private string lastName;
+        private List<int> coveredExams;
 
-        public string FirstName => throw new NotImplementedException();
+        public Student(int studentId,string firstName,string lastName)
+        {
+            Id = studentId;
+            FirstName = firstName;
+            LastName = lastName;
+            coveredExams = new List<int>();
+        }
 
-        public string LastName => throw new NotImplementedException();
+        public int Id {get; private set;}
 
-        public IReadOnlyCollection<int> CoveredExams => throw new NotImplementedException();
+        public string FirstName
+        {
 
-        public IUniversity University => throw new NotImplementedException();
+            get
+            {
+                return firstName;
+            }
+
+            private set
+            {
+                if (value == null || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException(String.Format(ExceptionMessages.NameNullOrWhitespace));
+                }
+
+                firstName = value;
+
+            }
+        }
+
+        public string LastName
+        {
+
+            get
+            {
+                return lastName;
+            }
+
+            private set
+            {
+                if (value == null || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Name cannot be null or whitespace!");
+                }
+
+                lastName = value;
+
+            }
+        }
+
+        public IReadOnlyCollection<int> CoveredExams => coveredExams;
+
+        public IUniversity University {get; private set;}
 
         public void CoverExam(ISubject subject)
         {
-            throw new NotImplementedException();
+            coveredExams.Add(subject.Id);
         }
 
         public void JoinUniversity(IUniversity university)
         {
-            throw new NotImplementedException();
+            University = university;
         }
     }
 }
