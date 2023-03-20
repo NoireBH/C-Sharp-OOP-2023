@@ -8,7 +8,9 @@ namespace UniversityCompetition.Models
 {
     public abstract class Subject : ISubject
     {
-
+        private int id;
+        private string name;
+        private int rate;
         public Subject(int subjectId,string subjectName,double subjectRate)
         {
             Id = subjectId;
@@ -22,17 +24,17 @@ namespace UniversityCompetition.Models
 
             get
             {
-                return Name;
+                return name;
             }
 
             private set
             {
-                if (value == null || string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(String.Format(ExceptionMessages.NameNullOrWhitespace));
                 }
 
-                Name = value;
+                name = value;
 
             }
         }

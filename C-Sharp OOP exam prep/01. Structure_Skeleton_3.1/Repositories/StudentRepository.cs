@@ -9,17 +9,22 @@ namespace UniversityCompetition.Repositories
 {
     public class StudentRepository : IRepository<IStudent>
     {   
-        private List<IStudent> models;
-        public IReadOnlyCollection<IStudent> Models => models;
+        private List<IStudent> students;
+
+        public StudentRepository()
+        {
+            students = new List<IStudent>();
+        }
+        public IReadOnlyCollection<IStudent> Models => students;
 
         public void AddModel(IStudent model)
         {
-            models.Add(model);
+            students.Add(model);
         }
 
         public IStudent FindById(int id)
         {
-            IStudent student = models.FirstOrDefault(x => x.Id == id);
+            IStudent student = students.FirstOrDefault(x => x.Id == id);
 
             return student;
         }
@@ -29,7 +34,7 @@ namespace UniversityCompetition.Repositories
             string[] fullName = name.Split();
             string firstName = fullName[0];
             string lastName = fullName[1];
-            IStudent student = models.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
+            IStudent student = students.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
 
             return student;
         }

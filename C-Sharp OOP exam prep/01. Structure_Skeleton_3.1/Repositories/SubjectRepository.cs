@@ -7,26 +7,31 @@ using UniversityCompetition.Repositories.Contracts;
 
 namespace UniversityCompetition.Repositories
 {
-    public class SubjectRepository<T> : IRepository<ISubject>
+    public class SubjectRepository : IRepository<ISubject>
     {
-        private List<ISubject> models;
-        public IReadOnlyCollection<ISubject> Models => models;
+        private List<ISubject> subjects;
+
+        public SubjectRepository()
+        {
+            subjects = new List<ISubject>();
+        }
+        public IReadOnlyCollection<ISubject> Models => subjects;
 
         public void AddModel(ISubject model)
         {
-            models.Add(model);
+            subjects.Add(model);
         }
 
         public ISubject FindById(int id)
         {
-            ISubject subject = models.FirstOrDefault(x => x.Id == id);
+            ISubject subject = subjects.FirstOrDefault(x => x.Id == id);
 
             return subject;
         }
 
         public ISubject FindByName(string name)
         {
-            ISubject subject = models.FirstOrDefault(x => x.Name == name);
+            ISubject subject = subjects.FirstOrDefault(x => x.Name == name);
 
             return subject;
         }

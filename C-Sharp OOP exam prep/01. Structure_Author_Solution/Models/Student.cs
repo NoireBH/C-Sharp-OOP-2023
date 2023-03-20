@@ -6,7 +6,7 @@ using UniversityCompetition.Utilities.Messages;
 
 namespace UniversityCompetition.Models
 {
-    public  class Student : IStudent
+    public class Student : IStudent
     {
         private int id;
         private string firstName;
@@ -14,59 +14,49 @@ namespace UniversityCompetition.Models
         private readonly List<int> coveredExams;
         private IUniversity university;
 
-        public Student(int studentId,string firstName,string lastName)
+        public Student(int id, string firstName, string lastName)
         {
-            Id = studentId;
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
-            coveredExams = new List<int>();
+            this.coveredExams = new List<int>();
         }
 
-        public int Id {get; private set;}
+        public int Id
+        {
+            get => id;
+            private set => id = value;
+        }
 
         public string FirstName
         {
-
-            get
-            {
-                return firstName;
-            }
-
+            get => firstName;
             private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(String.Format(ExceptionMessages.NameNullOrWhitespace));
+                    throw new ArgumentException(string.Format(ExceptionMessages.NameNullOrWhitespace));
                 }
-
                 firstName = value;
-
             }
         }
 
         public string LastName
         {
-
-            get
-            {
-                return lastName;
-            }
-
+            get => lastName;
             private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(String.Format(ExceptionMessages.NameNullOrWhitespace));
+                    throw new ArgumentException(string.Format(ExceptionMessages.NameNullOrWhitespace));
                 }
-
                 lastName = value;
-
             }
         }
 
-        public IReadOnlyCollection<int> CoveredExams => coveredExams;
+        public IReadOnlyCollection<int> CoveredExams => this.coveredExams;
 
-        public IUniversity University => university;
+        public IUniversity University => this.university;
 
         public void CoverExam(ISubject subject)
         {
@@ -74,7 +64,7 @@ namespace UniversityCompetition.Models
         }
 
         public void JoinUniversity(IUniversity university)
-        {   
+        {
             this.university = university;
         }
     }

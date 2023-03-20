@@ -8,13 +8,14 @@ namespace UniversityCompetition.Models
 {
     public class University : IUniversity
     {
+        private int id;
         private string name;
         private string category;
         private int capacity;
         private List<int> requiredSubjects;
 
         public University(int universityId, string universityName, string category,
-            int capacity, ICollection<int> requiredSubjects)
+            int capacity, List<int> requiredSubjects)
         {
             Id = universityId;
             Name = universityName;
@@ -34,7 +35,7 @@ namespace UniversityCompetition.Models
 
             private set
             {
-                if (value == null || string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(String.Format(ExceptionMessages.NameNullOrWhitespace));
                 }
