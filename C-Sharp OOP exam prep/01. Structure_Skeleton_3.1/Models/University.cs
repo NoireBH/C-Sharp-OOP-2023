@@ -21,7 +21,7 @@ namespace UniversityCompetition.Models
             Name = universityName;
             Category = category;
             Capacity = capacity;
-            requiredSubjects = new List<int>();
+            this.requiredSubjects = requiredSubjects;
         }
         public int Id {get; private set;}
 
