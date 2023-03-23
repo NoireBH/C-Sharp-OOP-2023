@@ -23,7 +23,7 @@ namespace UniversityCompetition.Models
             Capacity = capacity;
             this.requiredSubjects = requiredSubjects;
         }
-        public int Id {get; private set;}
+        public int Id { get; private set; }
 
         public string Name
         {
@@ -67,14 +67,14 @@ namespace UniversityCompetition.Models
             }
         }
 
-        public int Capacity 
+        public int Capacity
         {
             get
             {
                 return capacity;
             }
 
-            set
+            private set
             {
                 if (value < 0)
                 {
