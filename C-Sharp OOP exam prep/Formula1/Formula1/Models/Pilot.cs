@@ -21,7 +21,7 @@ namespace Formula1.Models
         public string FullName 
         {
             get { return fullName; }
-            set 
+            private set 
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
                 {
@@ -35,12 +35,15 @@ namespace Formula1.Models
         public IFormulaOneCar Car
         {
             get { return car; }
-            set 
+
+            private set 
             {
                 if (value == null)
                 {
                     throw new NullReferenceException(string.Format(ExceptionMessages.InvalidCarForPilot));
                 } 
+
+                car = value;
             }
         }
 

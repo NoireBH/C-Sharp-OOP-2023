@@ -25,7 +25,7 @@ namespace Formula1.Models
         {
             get { return raceName; }
 
-            set 
+            private set 
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
                 {
@@ -40,7 +40,8 @@ namespace Formula1.Models
         public int NumberOfLaps 
         {
             get { return numberOfLaps; }
-            set
+
+            private set
             {
                 if (value < 1)
                 {
@@ -57,7 +58,7 @@ namespace Formula1.Models
 
         public void AddPilot(IPilot pilot)
         {
-            Pilots.Add(pilot);
+            pilots.Add(pilot);
         }
 
         public string RaceInfo()
@@ -66,9 +67,19 @@ namespace Formula1.Models
             sb.AppendLine($"The {RaceName} race has:");
             sb.AppendLine($"Participants: {Pilots.Count}");
             sb.AppendLine($"Number of laps: {NumberOfLaps}");
-            sb.AppendLine($"Took place: {TookPlace}");
 
-            return sb.ToString().Trim();
+            if (TookPlace)
+            {
+                sb.AppendLine($"Took place: Yes");
+            }
+
+            else
+            {
+                sb.AppendLine($"Took place: No");
+            }
+            
+
+            return sb.ToString().TrimEnd();
         }
     }
 }

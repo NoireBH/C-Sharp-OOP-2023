@@ -8,9 +8,6 @@ namespace Formula1.Models
 {
     public abstract class FormulaOneCar : IFormulaOneCar
     {
-
-        
-
         private string model;
         private int horsepower;
         private double engineDisplacement;
@@ -26,7 +23,7 @@ namespace Formula1.Models
         {
             get { return model; }
 
-            set 
+          private  set 
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
                 {
@@ -42,7 +39,7 @@ namespace Formula1.Models
         {
             get { return horsepower; }
 
-            set
+            private set
             {
                 if (value < 900 || value > 1050)
                 {
@@ -57,7 +54,7 @@ namespace Formula1.Models
         {
             get { return engineDisplacement; }
 
-            set
+            private set
             {
                 if (value < 1.6 || value > 2.00)
                 {
