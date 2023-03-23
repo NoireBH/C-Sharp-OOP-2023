@@ -78,11 +78,6 @@ namespace Formula1.Core
                 throw new InvalidOperationException(string.Format(ExceptionMessages.CarExistErrorMessage, model));
             }
 
-            else if (type != "Ferrari" && type != "Williams")
-            {
-                throw new InvalidOperationException(string.Format(ExceptionMessages.InvalidTypeCar, type));
-            }
-
             else
             {
                 IFormulaOneCar car;
@@ -92,9 +87,14 @@ namespace Formula1.Core
                     carRepository.Add(car = new Ferrari(model, horsepower, engineDisplacement));
                 }
 
-                else
+                else if (type == "Williams")
                 {
                     carRepository.Add(car = new Williams(model, horsepower, engineDisplacement));
+                }
+
+                else
+                {
+                    throw new InvalidOperationException(string.Format(ExceptionMessages.InvalidTypeCar, type));
                 }
 
                 return string.Format(OutputMessages.SuccessfullyCreateCar, type,model);
