@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityLibrary", "01. St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityLibrary.Test", "01. Structure_Skeleton_3.1\03. Unit Tests_Skeleton_3.1\UniversityLibrary.Test\UniversityLibrary.Test.csproj", "{AD7B2AC9-66C4-4637-8AA2-DE8728E8D45D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristmasPastryShop", "Christmas Pastry Shop\ChristmasPastryShop.csproj", "{3E4B8065-3D91-4957-AAE2-330DD0CC8663}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{AD7B2AC9-66C4-4637-8AA2-DE8728E8D45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7B2AC9-66C4-4637-8AA2-DE8728E8D45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7B2AC9-66C4-4637-8AA2-DE8728E8D45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4B8065-3D91-4957-AAE2-330DD0CC8663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4B8065-3D91-4957-AAE2-330DD0CC8663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4B8065-3D91-4957-AAE2-330DD0CC8663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4B8065-3D91-4957-AAE2-330DD0CC8663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
