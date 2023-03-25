@@ -9,6 +9,11 @@ namespace ChristmasPastryShop.Repositories
     public class BoothRepository : IRepository<IBooth>
     {
         private List<IBooth> models;
+
+        public BoothRepository()
+        {
+            models = new List<IBooth>();
+        }
         public IReadOnlyCollection<IBooth> Models => models;
 
         public void AddModel(IBooth model)

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ChristmasPastryShop.Models.Cocktails
 {
-    public class Cocktail : ICocktail
+    public abstract class Cocktail : ICocktail
     {
         private string name;
         private string size;
