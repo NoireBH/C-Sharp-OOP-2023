@@ -11,7 +11,9 @@ namespace BookingApp.Models.Bookings
     {
         private int residenceDuration;
         private int adultsCount;
-        private int childrenCount;      
+        private int childrenCount;
+        private IRoom room;
+        private int bookingNumber;
 
         public Booking(IRoom room, int residenceDuration, int adultsCount, int childrenCount, int bookingNumber)
         {
@@ -19,7 +21,7 @@ namespace BookingApp.Models.Bookings
             ResidenceDuration = residenceDuration;
             AdultsCount = adultsCount;
             ChildrenCount = childrenCount;
-            BookingNumber = bookingNumber;
+            this.bookingNumber = bookingNumber;
         }
 
         public IRoom Room {get; private set;}
@@ -29,9 +31,9 @@ namespace BookingApp.Models.Bookings
         {
             get { return residenceDuration; }
 
-            set 
+           private set 
             {
-                if (value <= 0)
+                if (value < 1)
                 {
                     throw new ArgumentException(ExceptionMessages.DurationZeroOrLess);
                 }
@@ -44,9 +46,9 @@ namespace BookingApp.Models.Bookings
         {
             get { return adultsCount; }
 
-            set
+          private  set
             {
-                if (value <= 0)
+                if (value < 1)
                 {
                     throw new ArgumentException(string.Format(ExceptionMessages.AdultsZeroOrLess));
                 }
@@ -60,7 +62,7 @@ namespace BookingApp.Models.Bookings
         {
             get { return childrenCount; }
 
-            set
+          private  set
             {
                 if (value < 0)
                 {
@@ -72,7 +74,7 @@ namespace BookingApp.Models.Bookings
         }
 
 
-        public int BookingNumber { get; private set; }
+        public int BookingNumber => bookingNumber;
 
         public string BookingSummary()
         {
@@ -80,7 +82,7 @@ namespace BookingApp.Models.Bookings
             sb.AppendLine($"Booking number: {BookingNumber}");
             sb.AppendLine($"Room type: {Room.GetType().Name}");
             sb.AppendLine($"Adults: {AdultsCount} Children: {ChildrenCount}");
-            sb.AppendLine($"Total amount paid: {TotalPaid():F2} $");
+            sb.AppendLine($"Total amount paid: {TotalPaid():f2} $");
 
             return sb.ToString().TrimEnd();
         }

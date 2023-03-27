@@ -10,9 +10,9 @@ namespace BookingApp.Models.Rooms
     {
         private int bedCapacity;
         private double pricePerNight = 0;
-        public int BedCapacity {get; private set;}
+        public int BedCapacity => bedCapacity;
 
-        public Room(int bedCapactity)
+        protected Room(int bedCapactity)
         {
             bedCapacity = bedCapactity;
             
@@ -22,7 +22,7 @@ namespace BookingApp.Models.Rooms
         {
             get { return pricePerNight; }
 
-            set 
+           private set 
             {
                 if (value < 0)
                 {
