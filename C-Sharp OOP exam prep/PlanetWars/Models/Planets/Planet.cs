@@ -4,6 +4,7 @@ using PlanetWars.Models.Weapons.Contracts;
 using PlanetWars.Utilities.Messages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PlanetWars.Models.Planets
@@ -66,47 +67,110 @@ namespace PlanetWars.Models.Planets
                     throw new ArgumentException(ExceptionMessages.InvalidBudgetAmount);
                 }
 
-                militaryPower = value;
+                militaryPower = CalculateMilitaryPower();
             }
         }
 
-        private void CalculateMilitaryPower()
+        private double CalculateMilitaryPower()
         {
+          double militaryPower = army.Sum(x => x.EnduranceLevel) + Weapons.Sum(x => x.DestructionLevel);
 
+            if (army.Any(x => x.GetType().Name == "AnonymousImpactUnit"))
+            {
+                militaryPower *= 1.3;
+            }
+
+            if (weapons.Any(x => x.GetType().Name == "NuclearWeapon "))
+            {
+                militaryPower  *= 1.45;
+            }
+
+            return Math.Round(militaryPower, 3);
         }
 
-        public IReadOnlyCollection<IMilitaryUnit> Army => throw new NotImplementedException();
+        public IReadOnlyCollection<IMilitaryUnit> Army => army;
 
-        public IReadOnlyCollection<IWeapon> Weapons => throw new NotImplementedException();
+        public IReadOnlyCollection<IWeapon> Weapons => weapons;
 
         public void AddUnit(IMilitaryUnit unit)
         {
-            throw new NotImplementedException();
+            army.Add(unit);
         }
 
         public void AddWeapon(IWeapon weapon)
         {
-            throw new NotImplementedException();
+            weapons.Add(weapon);
         }
 
         public string PlanetInfo()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Planet: {Name}");
+            sb.AppendLine($"--Budget: {Budget} billion QUID");
+            sb.Append($"--Forces: ");
+
+            if (army.Count == 0)
+            {
+                sb.AppendLine("No units");
+            }
+
+            else
+            {
+                var units = new Queue<string>();
+
+                foreach (var unit in Army)
+                {
+                    units.Enqueue(unit.GetType().Name);
+                }
+
+                sb.AppendLine(string.Join(", ", units));
+            }
+
+            sb.Append($"--Combat equipment: ");
+
+            if (weapons.Count == 0)
+            {
+                sb.AppendLine("No weapons");
+            }
+
+            else
+            {
+                var weapons = new Queue<string>();
+
+                foreach (var weapon in Weapons)
+                {
+                    weapons.Enqueue(weapon.GetType().Name);
+                }
+
+                sb.AppendLine(string.Join(", ", weapons));
+            }
+
+            sb.AppendLine($"--Military Power: {MilitaryPower}");
+
+            return sb.ToString().TrimEnd();
         }
 
         public void Profit(double amount)
         {
-            throw new NotImplementedException();
+            Budget += amount;
         }
 
         public void Spend(double amount)
         {
-            throw new NotImplementedException();
+            if (Budget - amount < 0)
+            {
+                throw new InvalidOperationException(ExceptionMessages.UnsufficientBudget);
+            }
+
+            Budget -= amount;
         }
 
         public void TrainArmy()
         {
-            throw new NotImplementedException();
+            foreach (var unit in army)
+            {
+                unit.IncreaseEndurance();
+            }
         }
     }
 }
