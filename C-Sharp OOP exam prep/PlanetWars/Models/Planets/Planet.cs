@@ -1,6 +1,7 @@
 ﻿using PlanetWars.Models.MilitaryUnits.Contracts;
 using PlanetWars.Models.Planets.Contracts;
 using PlanetWars.Models.Weapons.Contracts;
+using PlanetWars.Repositories;
 using PlanetWars.Utilities.Messages;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,15 @@ namespace PlanetWars.Models.Planets
         private string name;
         private double budget;
         private double militaryPower;
-        private List<IMilitaryUnit> army;
-        private List<IWeapon> weapons;
+        private UnitRepository army;
+        private WeaponRepository weapons;
 
         public Planet(string name, double budget)
         {
             Name = name;
             Budget = budget;
-            army = new List<IMilitaryUnit>();
-            weapons = new List<IWeapon>();
+            army = new UnitRepository();
+            weapons = new WeaponRepository();
         }
 
         public string Name
@@ -73,14 +74,14 @@ namespace PlanetWars.Models.Planets
 
         private double CalculateMilitaryPower()
         {
-          double militaryPower = army.Sum(x => x.EnduranceLevel) + Weapons.Sum(x => x.DestructionLevel);
+          double militaryPower = army.Models.Sum(x => x.EnduranceLevel) + Weapons.Sum(x => x.DestructionLevel);
 
-            if (army.Any(x => x.GetType().Name == "AnonymousImpactUnit"))
+            if (army.Models.Any(x => x.GetType().Name == "AnonymousImpactUnit"))
             {
                 militaryPower *= 1.3;
             }
 
-            if (weapons.Any(x => x.GetType().Name == "NuclearWeapon "))
+            if (weapons.Models.Any(x => x.GetType().Name == "NuclearWeapon "))
             {
                 militaryPower  *= 1.45;
             }
@@ -88,18 +89,18 @@ namespace PlanetWars.Models.Planets
             return Math.Round(militaryPower, 3);
         }
 
-        public IReadOnlyCollection<IMilitaryUnit> Army => army;
+        public IReadOnlyCollection<IMilitaryUnit> Army => army.Models;
 
-        public IReadOnlyCollection<IWeapon> Weapons => weapons;
+        public IReadOnlyCollection<IWeapon> Weapons => weapons.Models;
 
         public void AddUnit(IMilitaryUnit unit)
         {
-            army.Add(unit);
+            army.AddItem(unit);
         }
 
         public void AddWeapon(IWeapon weapon)
         {
-            weapons.Add(weapon);
+            weapons.AddItem(weapon);
         }
 
         public string PlanetInfo()
@@ -109,7 +110,7 @@ namespace PlanetWars.Models.Planets
             sb.AppendLine($"--Budget: {Budget} billion QUID");
             sb.Append($"--Forces: ");
 
-            if (army.Count == 0)
+            if (army.Models.Count == 0)
             {
                 sb.AppendLine("No units");
             }
