@@ -1,5 +1,7 @@
-﻿using PlanetWars.Models.MilitaryUnits.Contracts;
+﻿using PlanetWars.Models.MilitaryUnits;
+using PlanetWars.Models.MilitaryUnits.Contracts;
 using PlanetWars.Models.Planets.Contracts;
+using PlanetWars.Models.Weapons;
 using PlanetWars.Models.Weapons.Contracts;
 using PlanetWars.Repositories;
 using PlanetWars.Utilities.Messages;
@@ -57,36 +59,23 @@ namespace PlanetWars.Models.Planets
             }
         }
 
-        public double MilitaryPower
-        {
-            get { return militaryPower; }
-
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException(ExceptionMessages.InvalidBudgetAmount);
-                }
-
-                militaryPower = CalculateMilitaryPower();
-            }
-        }
+        public double MilitaryPower => Math.Round(CalculateMilitaryPower(), 3);
 
         private double CalculateMilitaryPower()
         {
           double militaryPower = army.Models.Sum(x => x.EnduranceLevel) + Weapons.Sum(x => x.DestructionLevel);
 
-            if (army.Models.Any(x => x.GetType().Name == "AnonymousImpactUnit"))
+            if (army.Models.Any(x => x.GetType().Name == nameof(AnonymousImpactUnit)))
             {
                 militaryPower *= 1.3;
             }
 
-            if (weapons.Models.Any(x => x.GetType().Name == "NuclearWeapon "))
+            if (weapons.Models.Any(x => x.GetType().Name == nameof(NuclearWeapon)))
             {
                 militaryPower  *= 1.45;
             }
 
-            return Math.Round(militaryPower, 3);
+            return militaryPower;
         }
 
         public IReadOnlyCollection<IMilitaryUnit> Army => army.Models;
@@ -129,7 +118,7 @@ namespace PlanetWars.Models.Planets
 
             sb.Append($"--Combat equipment: ");
 
-            if (weapons.Count == 0)
+            if (weapons.Models.Count == 0)
             {
                 sb.AppendLine("No weapons");
             }
@@ -168,7 +157,7 @@ namespace PlanetWars.Models.Planets
 
         public void TrainArmy()
         {
-            foreach (var unit in army)
+            foreach (var unit in army.Models)
             {
                 unit.IncreaseEndurance();
             }
