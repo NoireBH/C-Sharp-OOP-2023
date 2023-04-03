@@ -162,6 +162,12 @@ namespace PlanetWars.Core
                 {
                     nobodyWins = true;
                 }
+
+                else if (!planet1.Weapons.Any(w => w.GetType().Name == nameof(NuclearWeapon))
+                   && !planet2.Weapons.Any(w => w.GetType().Name == nameof(NuclearWeapon)))
+                {
+                    nobodyWins = true;
+                }
             }
 
             if (nobodyWins)
