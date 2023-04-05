@@ -91,15 +91,29 @@ namespace Heroes.Models
         }
 
         public void TakeDamage(int points)
-        {
-            if (Armour > 0)
-            {
-                Armour -= points;
+        {   
+            var leftArmour = Armour - points;
 
-                if (Armour < 0)
+
+            if (leftArmour >= 0)
+            {
+                Armour = leftArmour;  
+            }
+
+            else
+            {
+                Armour = 0;
+                var damage = -leftArmour;
+                var healtLeft = Health - damage;
+
+                if (healtLeft >= 0)
                 {
-                    Health -= Armour;
-                    Armour = 0;
+                    Health = healtLeft;
+                }
+
+                else
+                {
+                    Health = 0;
                 }
             }
         }
