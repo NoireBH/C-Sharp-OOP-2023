@@ -13,6 +13,15 @@ namespace RobotService.Models
         private string model;
         private int batteryCapacity;
         private List<int> interfaceStandards;
+
+        protected Robot(string model, int batteryCapacity, int convertionCapacityIndex)
+        {
+            Model = model;
+            BatteryCapacity = batteryCapacity;
+            ConvertionCapacityIndex = convertionCapacityIndex;
+            interfaceStandards = new List<int>();
+        }
+
         public string Model
         {
             get { return model; }
