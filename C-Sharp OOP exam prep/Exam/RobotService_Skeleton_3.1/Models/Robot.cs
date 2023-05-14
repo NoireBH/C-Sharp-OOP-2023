@@ -95,6 +95,7 @@ namespace RobotService.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.AppendLine($"{this.GetType().Name} {Model}:");
             sb.AppendLine($"--Maximum battery capacity: {BatteryCapacity}");
             sb.AppendLine($"--Current battery level: {BatteryLevel}");

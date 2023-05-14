@@ -20,6 +20,7 @@ namespace RobotService.Models
             BatteryCapacity = batteryCapacity;
             ConvertionCapacityIndex = convertionCapacityIndex;
             interfaceStandards = new List<int>();
+            BatteryLevel = batteryCapacity;
         }
 
         public string Model
@@ -92,22 +93,22 @@ namespace RobotService.Models
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"{this.GetType().Name} {Model}: ");
+            sb.AppendLine($"{this.GetType().Name} {Model}:");
             sb.AppendLine($"--Maximum battery capacity: {BatteryCapacity}");
-            sb.AppendLine($"--Current battery level: {BatteryLevel} ");
+            sb.AppendLine($"--Current battery level: {BatteryLevel}");
 
             if (InterfaceStandards.Count == 0)
             {
-                sb.AppendLine("none");
+                sb.AppendLine("--Supplements installed: none");
             }
 
             else
             {
-                sb.AppendLine(String.Join(" ", InterfaceStandards));
+                sb.AppendLine($"--Supplements installed: {String.Join(" ", InterfaceStandards)}");
             }
 
 
-            return base.ToString();
+            return sb.ToString().TrimEnd();
         }
     }
 }

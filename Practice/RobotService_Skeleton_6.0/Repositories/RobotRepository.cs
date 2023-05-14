@@ -11,6 +11,11 @@ namespace RobotService.Repositories
     public class RobotRepository : IRepository<IRobot>
     {   
         private List<IRobot> robots;
+
+        public RobotRepository()
+        {
+            robots = new List<IRobot>();
+        }
         public void AddNew(IRobot model)
         {
             robots.Add(model);
