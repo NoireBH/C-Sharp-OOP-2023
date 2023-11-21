@@ -1,17 +1,18 @@
 ﻿internal class Program
 {
+    private static bool gameOver = false;
     private static void Main(string[] args)
     {
         string[,] gameBoard = new string[3, 3];
 
         string playerOneValue = "[X]";
         string playerTwoValue = "[O]";
+        string currentValue = string.Empty;
 
         int playerOnePoints = 0;
         int playerTwoPoints = 0;
 
         bool playerOneTurn = true;
-        bool gameOver = false;
 
         while (!gameOver)
         {
@@ -36,9 +37,9 @@
 
             else if (choice == 2)
             {
-                while (true)
+                while (!gameOver)
                 {
-                    PlayerTurn(gameBoard, playerOneValue, playerTwoValue, ref playerOneTurn);
+                    PlayerTurn(gameBoard, playerOneValue, playerTwoValue, ref playerOneTurn, currentValue);
                 }
                 
 
@@ -59,24 +60,24 @@
         }
     }
 
-    private static void PlayerTurn(string[,] gameBoard, string playerOneValue, string playerTwoValue, ref bool playerOneTurn)
+    private static void PlayerTurn(string[,] gameBoard, string playerOneValue, string playerTwoValue, ref bool playerOneTurn, string currentValue)
     {
         
 
         if (playerOneTurn)
         {
-            playerOneTurn = TurnLogic(gameBoard, playerOneValue, playerTwoValue, playerOneTurn);
+            playerOneTurn = TurnLogic(gameBoard, playerOneValue, playerTwoValue, playerOneTurn, currentValue);
 
         }
 
         else
         {
-            playerOneTurn = TurnLogic(gameBoard, playerOneValue, playerTwoValue, playerOneTurn);
+            playerOneTurn = TurnLogic(gameBoard, playerOneValue, playerTwoValue, playerOneTurn, currentValue);
 
         }
     }
 
-    private static bool TurnLogic(string[,] gameBoard, string playerOneValue, string playerTwoValue, bool playerOneTurn)
+    private static bool TurnLogic(string[,] gameBoard, string playerOneValue, string playerTwoValue, bool playerOneTurn, string currentValue)
     {
         Console.Clear();
         if (playerOneTurn)
@@ -104,7 +105,8 @@
         {
             PutValueOnBoard(gameBoard, row, col, playerTwoValue, ref playerOneTurn);
         }
-        
+
+        CheckIfPlayerWins(gameBoard,row,col, currentValue);
         PrintBoard(gameBoard);
         return playerOneTurn;
     }
@@ -188,6 +190,7 @@
             Console.WriteLine("Value is out of bounds of the gameboard!");
             Console.WriteLine("Please try again.");
             Thread.Sleep(1000);
+            PutValueOnBoard(gameBoard, row, col, value, ref playerOneTurn);
         }
 
         else if (gameBoard[row,col] != "[ ]")
@@ -213,4 +216,23 @@
 
         return false;
     }
+
+    private static void CheckIfPlayerWins(string[,] gameBoard,int r, int c, string value)
+    {
+        if (gameBoard[r,c] == value && gameBoard[r,c + 1] == value && gameBoard[r,c + 2] == value)
+        {
+            gameOver = true;
+        }
+
+        else if (gameBoard[r, c] == value && gameBoard[r + 1, c] == value && gameBoard[r + 2, c] == value)
+        {
+            gameOver = true;
+        }
+
+        else if (gameBoard[r, c] == value && gameBoard[r + 1, c + 1] == value && gameBoard[r + 2, c + 2] == value)
+        {
+            gameOver = true;
+        }
+    }
+
 }
